@@ -31,36 +31,23 @@ class CustomerController extends Controller
             'zip' => 'required|max:50'
         ]);
 
-        $customer = new Customer;
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->phone = $request->phone;
-        $customer->street_address = $request->street_address;
-        $customer->city = $request->city;
-        $customer->state = $request->state;
-        $customer->zip = $request->zip;
-        $customer->country = $request->county_name;
-        $customer->save();
-        Event::dispatch(new SendWelcomeMail($customer->id));
-        return back()->with('success','Data saved successfully');
-
-        /*try{
+        try{
             $customer = new Customer;
-            $student->name = $request->name;
-            $student->email = $request->email;
-            $student->phone = $request->phone;
-            $student->street_address = $request->street_address;
-            $student->city = $request->city;
-            $student->state = $request->state;
-            $student->zip = $request->zip;
-            $student->country = $request->county_name;
-            $student->save();
-            Event::fire(new SendWelcomeMail(11));
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->street_address = $request->street_address;
+            $customer->city = $request->city;
+            $customer->state = $request->state;
+            $customer->zip = $request->zip;
+            $customer->country = $request->county_name;
+            $customer->save();
+            Event::dispatch(new SendWelcomeMail($customer->id));
             return back()->with('success','Data saved successfully');
         }
         catch(Exception $e){
             return back()->with('success','Error while saving data');
-        }*/
+        }
     }
 
 }
